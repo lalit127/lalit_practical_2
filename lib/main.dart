@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lalit_practical/view/timer_screen.dart';
 
 void main() {
@@ -10,12 +11,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Practice',
+      title: 'Stop Timer',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        fontFamily: 'Inter',
       ),
       home: const TimerScreen(),
     );
