@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lalit_practical/controller/time_controller.dart';
 import 'package:lalit_practical/utils/constants.dart';
-import 'package:lalit_practical/widget/common_button.dart';
 import 'package:lalit_practical/widget/common_dialog.dart';
 import 'package:lalit_practical/widget/common_text.dart';
-import 'package:lalit_practical/widget/common_text_field.dart';
 import 'package:lalit_practical/widget/common_time_widget.dart';
 import 'package:lalit_practical/widget/floating_widget.dart';
 
@@ -34,13 +32,16 @@ class _TimerScreenState extends State<TimerScreen> {
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 23.0),
           child: Obx(
-            () => ListView.separated(
+            () => (timeCon.timerList.value == null && timeCon.timerList.value.isEmpty)?SizedBox():ListView.separated(
               itemCount: timeCon.timerList.value.length,
               separatorBuilder: (context, index) => const SizedBox(height: 20),
-              itemBuilder: (context, index) => CommonTimeWidget(
-                  onTap: () {
-                timeCon.deleteSetTimer(timeCon.timerList.value[index]);
-              }),
+              itemBuilder: (context, index) =>
+                 CommonTimeWidget(
+                  index:index,
+                  timeDuration: timeCon.timerList.value[index].toString(),
+                    onTap: () {
+                  timeCon.deleteSetTimer(timeCon.timerList.value[index]);
+                }),
             ),
           ),
         ),
@@ -48,7 +49,10 @@ class _TimerScreenState extends State<TimerScreen> {
           onPressed: () {
             showDialog(
                 context: context,
-                builder: (context) => CommonDialog());
+                builder: (context) => CommonDialog()).whenComplete((){
+              timeCon.timeError.value = false;
+                  timeCon.resetValue();
+            });
           },
         ));
   }

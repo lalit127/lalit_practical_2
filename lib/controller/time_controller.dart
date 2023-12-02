@@ -15,34 +15,48 @@ class TimeController extends GetxController{
 
   RxBool timeError = false.obs;
 
+  resetValue(){
+    hourController.text = "";
+    minController.text = "";
+    secController.text = "";
+  }
+
+
+
+  setTimer(){
+    try{
+      if(hourController.text.isEmpty && minController.text.isEmpty && secController.text.isEmpty){
+        timeError.value = true;
+      }
+      else{
+        timeError.value = false;
+        timeDuration();
+      }
+    }catch(e){
+      print(e);
+    }
+  }
+
   timeDuration() {
 
     totalStopTime.value = (int.parse(hourController.text) * 3600) +
         (int.parse(minController.text) * 60) +
         int.parse(secController.text);
-  }
-
-  setTimer(){
-    try{
-      if(hourController.text.isEmpty && minController.text.isEmpty && secController.text.isEmpty ){
-        timeError.value = true;
-      }
-      else{
-        timeError.value = false;
-      }
-    }catch(e){
-      print(e);
+    if(totalStopTime.value == 0){
+      timeError.value = true;
+      resetValue();
+      update();
     }
-
-    count.value += 1;
-    print(count.value);
-    timerList.add(count.value);
-    print(timerList);
+    else{
+      timeError.value = false;
+      timerList.add(totalStopTime.value);
+      Get.back();
+      resetValue();
+    }
   }
 
   deleteSetTimer(value){
     timerList.remove(value);
+    update();
   }
-
-
 }

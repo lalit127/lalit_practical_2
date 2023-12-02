@@ -21,11 +21,6 @@ class CommonDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Obx(() =>
-               timeCon.timeError.value?const CommonText(
-                text: "Please add time",
-                color: AppColor.red,):const SizedBox(),
-            ),
             Container(
               height: 65,
               decoration: BoxDecoration(
@@ -47,7 +42,7 @@ class CommonDialog extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    CommonTextField(controller: timeCon.hourController),
+                    CommonTextField(controller: timeCon.hourController,),
                     const CommonText(text: "Hours",fontSize: 20,fontWeight: FontWeight.w400,)
                   ],
                 ),
@@ -110,7 +105,7 @@ class CommonDialog extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 31.0),
               child: InkWell(
                 onTap: () {
-                  timeCon.timeDuration();
+                  timeCon.setTimer();
                 },
                 child: CommonButton(
                   text: 'ADD',

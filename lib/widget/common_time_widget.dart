@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,8 +9,9 @@ import 'package:lalit_practical/widget/common_text.dart';
 class CommonTimeWidget extends StatefulWidget {
   String? timeDuration;
   void Function()? onTap;
+  int? index;
 
-  CommonTimeWidget({super.key, this.timeDuration, this.onTap});
+  CommonTimeWidget({super.key, this.timeDuration, this.onTap,  this.index});
 
   @override
   State<CommonTimeWidget> createState() => _CommonTimeWidgetState();
@@ -17,6 +19,48 @@ class CommonTimeWidget extends StatefulWidget {
 
 class _CommonTimeWidgetState extends State<CommonTimeWidget> {
   final timeCon = Get.find<TimeController>();
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+
+  startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      timeCon.timerList.value[widget.index!] = timeCon.timerList.value[widget.index!] - 1;
+    });
+  }
+
+  Widget buildTime() {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    int remainingSeconds = timeCon.timerList.value[widget.index!];
+    final int hour = remainingSeconds ~/ 3600;
+    final int minutes = (remainingSeconds % 3600) ~/ 60;
+    final int seconds = remainingSeconds % 60;
+
+    if (remainingSeconds == 0) {
+      timeCon.deleteSetTimer(timeCon.timerList.value[widget.index!]);
+      return SizedBox();
+    } else {
+      return CommonText(
+        text: "${twoDigits(hour)}:${twoDigits(minutes)}:${twoDigits(seconds)}",
+        fontSize: 40,
+        fontWeight: FontWeight.w400,
+        textAlign: TextAlign.center,
+      );
+    }
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    timer?.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +79,7 @@ class _CommonTimeWidgetState extends State<CommonTimeWidget> {
                 children: [
                   Expanded(
                     child: Obx(
-                      () => CommonText(
-                        text:
-                            "${timeCon.hourController.text}:${timeCon.minController.text}:${timeCon.secController.text}" ??
-                                "10",
-                        fontSize: 40,
-                        fontWeight: FontWeight.w400,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                        () => buildTime())
                   ),
                   InkWell(
                     onTap: widget.onTap,
