@@ -21,7 +21,6 @@ class _TimerScreenState extends State<TimerScreen> {
   Future<void> _initializeTimer() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final tempList = prefs.getStringList("timerList");
-    print(tempList);
     timeCon.timerList.value = tempList?.map((e) => int.parse(e)).toList()??[];
   }
 

@@ -38,54 +38,37 @@ class CommonDialog extends StatelessWidget {
             const SizedBox(height: 63),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   children: [
-                    CommonTextField(controller: timeCon.hourController,),
-                    const CommonText(text: "Hours",fontSize: 20,fontWeight: FontWeight.w400,)
+                    CommonTextField(controller: timeCon.hourController),
+                    const CommonText(text: "Hours", fontSize: 20, fontWeight: FontWeight.w400,),
                   ],
                 ),
-                Column(
-                  children: [
-                    CommonText(
-                      text: ".",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 40,
-                      color: AppColor.black.withOpacity(0.54),
-                    ),
-
-                    CommonText(
-                      text: "",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 40,
-                      color: AppColor.black.withOpacity(0.54),
-                    ),
-                  ],
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8),
+                  child: CommonText(
+                    text: ":",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 40,
+                    color: AppColor.black.withOpacity(0.54),
+                  ),
                 ),
-
                 Column(
                   children: [
                     CommonTextField(controller: timeCon.minController),
-                    const CommonText(text: "Minutes",fontSize: 20,fontWeight: FontWeight.w400,)
+                    const CommonText(text: "Minutes", fontSize: 20, fontWeight: FontWeight.w400,),
                   ],
                 ),
-                Column(
-                  children: [
-                    CommonText(
-                      text: ".",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 40,
-                      color: AppColor.black.withOpacity(0.54),
-                    ),
-
-                    CommonText(
-                      text: "",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 40,
-                      color: AppColor.black.withOpacity(0.54),
-                    ),
-                  ],
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                  child: CommonText(
+                    text: ":",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 40,
+                    color: AppColor.black.withOpacity(0.54),
+                  ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -93,11 +76,12 @@ class CommonDialog extends StatelessWidget {
                     CommonTextField(
                       controller: timeCon.secController,
                     ),
-                    const CommonText(text: "Sec",fontSize: 20,fontWeight: FontWeight.w400,)
+                    const CommonText(text: "Sec", fontSize: 20, fontWeight: FontWeight.w400,),
                   ],
                 ),
               ],
             ),
+
             const SizedBox(
               height: 85,
             ),
