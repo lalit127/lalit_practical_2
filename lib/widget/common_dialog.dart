@@ -19,6 +19,8 @@ class CommonDialog extends StatelessWidget {
         decoration: BoxDecoration(
             color: AppColor.white, borderRadius: BorderRadius.circular(20)),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
@@ -37,10 +39,10 @@ class CommonDialog extends StatelessWidget {
             ),
             const SizedBox(height: 63),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(width: 5),
                 Column(
                   children: [
                     CommonTextField(controller: timeCon.hourController),
@@ -53,7 +55,7 @@ class CommonDialog extends StatelessWidget {
                 ),
                 Container(
                   margin:
-                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
+                      const EdgeInsets.symmetric(horizontal: 2.0, vertical: 8),
                   child: CommonText(
                     text: ":",
                     fontWeight: FontWeight.w400,
@@ -73,7 +75,7 @@ class CommonDialog extends StatelessWidget {
                 ),
                 Container(
                   margin:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                      const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
                   child: CommonText(
                     text: ":",
                     fontWeight: FontWeight.w400,
@@ -94,7 +96,6 @@ class CommonDialog extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(width: 5),
               ],
             ),
             SizedBox(height: 51),
