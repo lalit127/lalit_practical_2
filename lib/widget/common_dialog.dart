@@ -36,67 +36,66 @@ class CommonDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 63),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    children: [
-                      CommonTextField(controller: timeCon.hourController),
-                      const CommonText(
-                        text: "Hours",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
-                    child: CommonText(
-                      text: ":",
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(width: 5),
+                Column(
+                  children: [
+                    CommonTextField(controller: timeCon.hourController),
+                    const CommonText(
+                      text: "Hours",
+                      fontSize: 20,
                       fontWeight: FontWeight.w400,
-                      fontSize: 40,
-                      color: AppColor.black.withOpacity(0.54),
                     ),
+                  ],
+                ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
+                  child: CommonText(
+                    text: ":",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 40,
+                    color: AppColor.black.withOpacity(0.54),
                   ),
-                  Column(
-                    children: [
-                      CommonTextField(controller: timeCon.minController),
-                      const CommonText(
-                        text: "Minutes",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                    child: CommonText(
-                      text: ":",
+                ),
+                Column(
+                  children: [
+                    CommonTextField(controller: timeCon.minController),
+                    const CommonText(
+                      text: "Minutes",
+                      fontSize: 20,
                       fontWeight: FontWeight.w400,
-                      fontSize: 40,
-                      color: AppColor.black.withOpacity(0.54),
                     ),
+                  ],
+                ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  child: CommonText(
+                    text: ":",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 40,
+                    color: AppColor.black.withOpacity(0.54),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      CommonTextField(
-                        controller: timeCon.secController,
-                      ),
-                      const CommonText(
-                        text: "Sec",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    CommonTextField(
+                      controller: timeCon.secController,
+                    ),
+                    const CommonText(
+                      text: "Sec",
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ],
+                ),
+                SizedBox(width: 5),
+              ],
             ),
             SizedBox(height: 51),
             Padding(
