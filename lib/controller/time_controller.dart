@@ -7,7 +7,6 @@ class TimeController extends GetxController{
   RxInt count = 0.obs;
   RxList timerList = [].obs;
   RxInt totalStopTime= 0.obs;
-  // Obtain shared preferences.
 
   TextEditingController hourController = TextEditingController();
   TextEditingController minController = TextEditingController();

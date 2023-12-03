@@ -3,10 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lalit_practical/utils/constants.dart';
 
 class FloatingWidget extends StatelessWidget {
-
   void Function()? onPressed;
 
-  FloatingWidget({super.key,this.onPressed});
+  FloatingWidget({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,6 @@ class FloatingWidget extends StatelessWidget {
           child: Center(
             child: SvgPicture.asset(AppIcon.addIcon),
           ),
-        )
-    );
+        ));
   }
 }

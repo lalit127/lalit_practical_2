@@ -21,7 +21,7 @@ class _TimerScreenState extends State<TimerScreen> {
   Future<void> _initializeTimer() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final tempList = prefs.getStringList("timerList");
-    timeCon.timerList.value = tempList?.map((e) => int.parse(e)).toList()??[];
+    timeCon.timerList.value = tempList?.map((e) => int.parse(e)).toList() ?? [];
   }
 
   @override
@@ -29,7 +29,6 @@ class _TimerScreenState extends State<TimerScreen> {
     super.initState();
     _initializeTimer();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,31 +45,31 @@ class _TimerScreenState extends State<TimerScreen> {
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 23.0),
           child: Obx(
-            () => (timeCon.timerList.value == null && timeCon.timerList.value.isEmpty)?SizedBox():ListView.separated(
-              itemCount: timeCon.timerList.value.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 20),
-              itemBuilder: (context, index) =>
-                 Obx(() =>
-                    CommonTimeWidget(
-                    index:index,
-                    timeDuration: timeCon.timerList.value[index].toString(),
-                      onTap: () =>
-                      timeCon.deleteTimer(index)
-                      ),
-            ),
+            () => (timeCon.timerList.value == null &&
+                    timeCon.timerList.value.isEmpty)
+                ? SizedBox()
+                : ListView.separated(
+                    itemCount: timeCon.timerList.value.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 20),
+                    itemBuilder: (context, index) => Obx(
+                      () => CommonTimeWidget(
+                          index: index,
+                          timeDuration:
+                              timeCon.timerList.value[index].toString(),
+                          onTap: () => timeCon.deleteTimer(index)),
+                    ),
+                  ),
           ),
-        ),
         ),
         floatingActionButton: FloatingWidget(
           onPressed: () {
-            showDialog(
-                context: context,
-                builder: (context) => CommonDialog()).whenComplete((){
+            showDialog(context: context, builder: (context) => CommonDialog())
+                .whenComplete(() {
               timeCon.timeError.value = false;
-                  timeCon.resetValue();
+              timeCon.resetValue();
             });
           },
         ));
   }
-
 }

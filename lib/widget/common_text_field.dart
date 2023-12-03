@@ -33,8 +33,8 @@ class CommonTextField extends StatelessWidget {
     return SizedBox(
       width: 78,
       height: 84,
-      child: Obx(() =>
-         TextField(
+      child: Obx(
+        () => TextField(
           controller: controller,
           showCursor: false,
           textAlign: TextAlign.center,
@@ -72,7 +72,9 @@ class CommonTextField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius ?? 10),
               borderSide: BorderSide(
-                  color: timeCon.timeError.value?AppColor.red:AppColor.backgroundColor),
+                  color: timeCon.timeError.value
+                      ? AppColor.red
+                      : AppColor.backgroundColor),
             ),
           ),
         ),

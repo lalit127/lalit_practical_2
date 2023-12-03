@@ -43,11 +43,16 @@ class CommonDialog extends StatelessWidget {
                 Column(
                   children: [
                     CommonTextField(controller: timeCon.hourController),
-                    const CommonText(text: "Hours", fontSize: 20, fontWeight: FontWeight.w400,),
+                    const CommonText(
+                      text: "Hours",
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ],
                 ),
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
                   child: CommonText(
                     text: ":",
                     fontWeight: FontWeight.w400,
@@ -58,11 +63,16 @@ class CommonDialog extends StatelessWidget {
                 Column(
                   children: [
                     CommonTextField(controller: timeCon.minController),
-                    const CommonText(text: "Minutes", fontSize: 20, fontWeight: FontWeight.w400,),
+                    const CommonText(
+                      text: "Minutes",
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ],
                 ),
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   child: CommonText(
                     text: ":",
                     fontWeight: FontWeight.w400,
@@ -76,12 +86,15 @@ class CommonDialog extends StatelessWidget {
                     CommonTextField(
                       controller: timeCon.secController,
                     ),
-                    const CommonText(text: "Sec", fontSize: 20, fontWeight: FontWeight.w400,),
+                    const CommonText(
+                      text: "Sec",
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ],
                 ),
               ],
             ),
-
             const SizedBox(
               height: 85,
             ),

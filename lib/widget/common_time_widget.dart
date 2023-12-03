@@ -11,7 +11,7 @@ class CommonTimeWidget extends StatefulWidget {
   void Function()? onTap;
   int? index;
 
-  CommonTimeWidget({super.key, this.timeDuration, this.onTap,  this.index});
+  CommonTimeWidget({super.key, this.timeDuration, this.onTap, this.index});
 
   @override
   State<CommonTimeWidget> createState() => _CommonTimeWidgetState();
@@ -26,7 +26,6 @@ class _CommonTimeWidgetState extends State<CommonTimeWidget> {
     super.initState();
     startTimer();
   }
-
 
   startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -47,14 +46,13 @@ class _CommonTimeWidgetState extends State<CommonTimeWidget> {
     final int minutes = (remainingSeconds % 3600) ~/ 60;
     final int seconds = remainingSeconds % 60;
 
-   return CommonText(
-        text: "${twoDigits(hour)}:${twoDigits(minutes)}:${twoDigits(seconds)}",
-        fontSize: 40,
-        fontWeight: FontWeight.w400,
-        textAlign: TextAlign.center,
-      );
-    }
-
+    return CommonText(
+      text: "${twoDigits(hour)}:${twoDigits(minutes)}:${twoDigits(seconds)}",
+      fontSize: 40,
+      fontWeight: FontWeight.w400,
+      textAlign: TextAlign.center,
+    );
+  }
 
   @override
   void dispose() {
@@ -78,9 +76,7 @@ class _CommonTimeWidgetState extends State<CommonTimeWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: buildTime()
-                  ),
+                  Expanded(child: buildTime()),
                   InkWell(
                     onTap: widget.onTap,
                     child: Container(

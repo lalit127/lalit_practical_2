@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lalit_practical/utils/constants.dart';
 
 class CommonText extends StatelessWidget {
@@ -10,7 +9,14 @@ class CommonText extends StatelessWidget {
   final TextAlign? textAlign;
   final TextDecoration? underLine;
 
-  const CommonText({super.key, this.text, this.color, this.fontSize, this.fontWeight, this.underLine, this.textAlign});
+  const CommonText(
+      {super.key,
+      this.text,
+      this.color,
+      this.fontSize,
+      this.fontWeight,
+      this.underLine,
+      this.textAlign});
 
   @override
   Widget build(BuildContext context) {
