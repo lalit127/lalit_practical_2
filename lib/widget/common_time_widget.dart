@@ -75,7 +75,10 @@ class _CommonTimeWidgetState extends State<CommonTimeWidget> {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize:MainAxisSize.min,
                 children: [
+                  SizedBox(width: 50),
                   Expanded(child: buildTime()),
                   InkWell(
                     onTap: widget.onTap,
