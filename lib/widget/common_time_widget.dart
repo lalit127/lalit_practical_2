@@ -29,8 +29,14 @@ class _CommonTimeWidgetState extends State<CommonTimeWidget> {
 
 
   startTimer() {
-    timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      timeCon.timerList.value[widget.index!] = timeCon.timerList.value[widget.index!] - 1;
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (timeCon.timerList[widget.index!] > 0) {
+        timeCon.timerList[widget.index!] = timeCon.timerList[widget.index!] - 1;
+      } else {
+        timeCon.timerList.removeAt(widget.index!);
+        timer.cancel();
+      }
+      timeCon.update();
     });
   }
 
@@ -41,18 +47,13 @@ class _CommonTimeWidgetState extends State<CommonTimeWidget> {
     final int minutes = (remainingSeconds % 3600) ~/ 60;
     final int seconds = remainingSeconds % 60;
 
-    if (remainingSeconds == 0) {
-      timeCon.deleteSetTimer(timeCon.timerList.value[widget.index!]);
-      return SizedBox();
-    } else {
-      return CommonText(
+   return CommonText(
         text: "${twoDigits(hour)}:${twoDigits(minutes)}:${twoDigits(seconds)}",
         fontSize: 40,
         fontWeight: FontWeight.w400,
         textAlign: TextAlign.center,
       );
     }
-  }
 
 
   @override
@@ -78,8 +79,7 @@ class _CommonTimeWidgetState extends State<CommonTimeWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: Obx(
-                        () => buildTime())
+                    child: buildTime()
                   ),
                   InkWell(
                     onTap: widget.onTap,

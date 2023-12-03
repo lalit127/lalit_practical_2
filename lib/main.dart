@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lalit_practical/view/timer_screen.dart';
 
-void main() {
+Future<void> main() async{
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarColor: Colors.transparent, // status bar color
+    ),
+  );
   runApp(const MyApp());
 }
 

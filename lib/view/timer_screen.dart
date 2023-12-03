@@ -6,6 +6,7 @@ import 'package:lalit_practical/widget/common_dialog.dart';
 import 'package:lalit_practical/widget/common_text.dart';
 import 'package:lalit_practical/widget/common_time_widget.dart';
 import 'package:lalit_practical/widget/floating_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -16,6 +17,20 @@ class TimerScreen extends StatefulWidget {
 
 class _TimerScreenState extends State<TimerScreen> {
   final timeCon = Get.put<TimeController>(TimeController());
+
+  Future<void> _initializeTimer() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final tempList = prefs.getStringList("timerList");
+    print(tempList);
+    timeCon.timerList.value = tempList?.map((e) => int.parse(e)).toList()??[];
+  }
+
+  @override
+  initState() {
+    super.initState();
+    _initializeTimer();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +51,16 @@ class _TimerScreenState extends State<TimerScreen> {
               itemCount: timeCon.timerList.value.length,
               separatorBuilder: (context, index) => const SizedBox(height: 20),
               itemBuilder: (context, index) =>
-                 CommonTimeWidget(
-                  index:index,
-                  timeDuration: timeCon.timerList.value[index].toString(),
-                    onTap: () {
-                  timeCon.deleteSetTimer(timeCon.timerList.value[index]);
-                }),
+                 Obx(() =>
+                    CommonTimeWidget(
+                    index:index,
+                    timeDuration: timeCon.timerList.value[index].toString(),
+                      onTap: () =>
+                      timeCon.deleteTimer(index)
+                      ),
             ),
           ),
+        ),
         ),
         floatingActionButton: FloatingWidget(
           onPressed: () {

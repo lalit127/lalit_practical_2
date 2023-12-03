@@ -1,13 +1,13 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TimeController extends GetxController{
 
   RxInt count = 0.obs;
   RxList timerList = [].obs;
   RxInt totalStopTime= 0.obs;
+  // Obtain shared preferences.
 
   TextEditingController hourController = TextEditingController();
   TextEditingController minController = TextEditingController();
@@ -37,8 +37,8 @@ class TimeController extends GetxController{
     }
   }
 
-  timeDuration() {
-
+  timeDuration() async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     totalStopTime.value = (int.parse(hourController.text) * 3600) +
         (int.parse(minController.text) * 60) +
         int.parse(secController.text);
@@ -50,13 +50,16 @@ class TimeController extends GetxController{
     else{
       timeError.value = false;
       timerList.add(totalStopTime.value);
+      prefs.setStringList("timerList", timerList.value.map((e) => e.toString()).toList());
+      print(prefs.getStringList("timerList"));
       Get.back();
       resetValue();
     }
   }
 
-  deleteSetTimer(value){
-    timerList.remove(value);
-    update();
+  Future<void> deleteTimer(int index) async{
+    timerList.removeAt(index);
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList("timerList", timerList.value.map((e) => e.toString()).toList());
   }
 }
