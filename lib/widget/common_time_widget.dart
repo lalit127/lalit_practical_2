@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:lalit_practical/controller/time_controller.dart';
 import 'package:lalit_practical/utils/constants.dart';
 import 'package:lalit_practical/widget/common_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CommonTimeWidget extends StatefulWidget {
   String? timeDuration;
@@ -27,12 +28,14 @@ class _CommonTimeWidgetState extends State<CommonTimeWidget> {
     startTimer();
   }
 
-  startTimer() {
+  startTimer() async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (timeCon.timerList[widget.index!] > 0) {
         timeCon.timerList[widget.index!] = timeCon.timerList[widget.index!] - 1;
       } else {
         timeCon.timerList.removeAt(widget.index!);
+        prefs.setStringList("timerList", timeCon.timerList.value.map((e) => e.toString()).toList());
         timer.cancel();
       }
       timeCon.update();

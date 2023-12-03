@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Stop Timer',
       theme: ThemeData(
-        fontFamily: 'Inter',
       ),
       home: const TimerScreen(),
     );
