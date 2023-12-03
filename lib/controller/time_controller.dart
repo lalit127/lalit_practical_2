@@ -57,7 +57,7 @@ class TimeController extends GetxController{
     }
   }
 
-  Future<void> deleteTimer(int index) async{
+ deleteTimer(int index) async{
     timerList.removeAt(index);
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList("timerList", timerList.value.map((e) => e.toString()).toList());
